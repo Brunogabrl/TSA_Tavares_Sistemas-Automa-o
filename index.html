@@ -53,14 +53,13 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             background: radial-gradient(ellipse at center, #0a0a0a 0%, #000 70%);
-            padding: 20px;
         }
 
         .logo-container {
@@ -108,7 +107,7 @@
         .cta-button {
             background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
             border: none;
-            padding: 18px 45px;
+            padding: 18px 40px;
             font-size: 1.1rem;
             font-weight: 600;
             color: #000;
@@ -119,7 +118,16 @@
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
             box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+            max-width: 90%;
             white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .cta-button {
+                padding: 16px 30px;
+                font-size: 1rem;
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            }
         }
 
         @keyframes pulse {
@@ -178,15 +186,13 @@
         .content {
             min-height: 100vh;
             padding: 100px 20px;
-            background: #000;
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
             position: relative;
-            z-index: 10;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
         }
 
         .section-title {
@@ -275,8 +281,6 @@
         .projects-section {
             padding: 100px 20px;
             background: #050505;
-            position: relative;
-            z-index: 10;
         }
 
         .project-showcase {
@@ -416,40 +420,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                padding: 20px;
-                min-height: 100vh;
-            }
-            
             .logo-image {
-                width: 180px;
-                max-width: 80vw;
-            }
-            
-            .cta-button {
-                padding: 15px 30px;
-                font-size: 0.95rem;
-                border-radius: 30px;
-                width: auto;
-                max-width: 280px;
-                white-space: normal;
-                text-align: center;
+                width: 200px;
             }
             
             .section-title {
-                font-size: 1.8rem;
-                padding: 0 15px;
-                word-wrap: break-word;
-            }
-            
-            .section-subtitle {
-                font-size: 1rem;
-                padding: 0 15px;
+                font-size: 2rem;
             }
             
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
             }
 
             .project-showcase {
@@ -459,36 +439,11 @@
             .contact-grid {
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
             }
 
             .contact-button {
-                width: 90%;
-                max-width: 280px;
+                width: 250px;
                 justify-content: center;
-            }
-            
-            .floating-whatsapp {
-                width: 55px;
-                height: 55px;
-                font-size: 28px;
-                bottom: 25px;
-                right: 25px;
-            }
-            
-            .content, .projects-section, .contact-section {
-                padding: 60px 15px;
-            }
-        }
-        
-        @media (max-width: 380px) {
-            .cta-button {
-                font-size: 0.9rem;
-                padding: 14px 25px;
-            }
-            
-            .logo-image {
-                width: 150px;
             }
         }
 
@@ -804,35 +759,7 @@
             observer.observe(el);
         });
 
-        // Simple scroll to content - no parallax bullshit
-        function scrollToContent() {
-            document.getElementById('content').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
-        // Add animation when elements come into view
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.service-card, .project-card, .section-title, .section-subtitle').forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
-        });
-
-        // Simple fade for scroll indicator
+        // Simplified scroll effects
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             
