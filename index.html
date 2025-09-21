@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tavares Sistemas e Automação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* Scroll fade indicators */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, #000 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(0deg, #000 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .show-top-fade::before {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, #0a0a0a 0%, #000 70%);
+        }
+
+        .logo-container {
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo-image {
+            width: 300px;
+            height: auto;
+            filter: brightness(1.1) contrast(1.1);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 20px rgba(255,255,255,0.3));
+            }
+            to {
+                filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 40px rgba(255,255,255,0.5));
+            }
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255,255,255,0.1);
+        }
+
+        .logo-subtitle {
+            font-size: 1.1rem;
+            color: #888;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 60px rgba(0, 255, 136, 0.7);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+            }
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            animation: none;
+            box-shadow: 0 0 80px rgba(0, 255, 136, 0.8);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #0099ff;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) translateX(0);
+            }
+            to {
+                transform: translateY(-10vh) translateX(100px);
+            }
+        }
+
+        /* Main Content Section */
+        .content {
+            min-height: 100vh;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #0099ff 0%, #00ffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+            border: 1px solid #222;
+            padding: 35px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #0099ff;
+            box-shadow: 0 20px 40px rgba(0, 153, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .service-description {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .service-features li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #0099ff;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 100px 20px;
+            background: #050505;
+        }
+
+        .project-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            border-color: #00ff88;
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.15);
+        }
+
+        .project-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #00ff88;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: transparent;
+            border: 2px solid #0099ff;
+            color: #0099ff;
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: #0099ff;
+            color: #000;
+            box-shadow: 0 10px 30px rgba(0, 153, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .whatsapp-button {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            border: none;
+            color: white;
+        }
+
+        .whatsapp-button:hover {
+            background: linear-gradient(135deg, #128c7e 0%, #25d366 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Tech Badge */
+        .tech-badge {
+            display: inline-block;
+            background: rgba(0, 153, 255, 0.1);
+            border: 1px solid rgba(0, 153, 255, 0.3);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #0099ff;
+            margin: 5px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-image {
+                width: 200px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-button {
+                width: 250px;
+                justify-content: center;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards, bounce 2s infinite 2s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator::after {
+            content: "↓";
+            font-size: 24px;
+            color: #444;
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: floatButton 3s ease-in-out infinite;
+        }
+
+        @keyframes floatButton {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .highlight-text {
+            color: #00ff88;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="particles">
+            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 40%; animation-delay: 5s;"></div>
+            <div class="particle" style="left: 50%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 60%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 70%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 80%; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 90%; animation-delay: 1s;"></div>
+        </div>
+        
+        <div class="logo-container">
+            <img src="logo-tavares.png" alt="Tavares Sistemas e Automação" class="logo-image">
+        </div>
+        
+        <button class="cta-button" onclick="scrollToContent()">
+            CONHEÇA NOSSAS SOLUÇÕES
+        </button>
+        
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Main Services -->
+    <section class="content" id="content">
+        <div class="container">
+            <h2 class="section-title">Soluções Inteligentes para Sua Indústria</h2>
+            <p class="section-subtitle">Transformamos dados em decisões estratégicas</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">📊</span>
+                    <h3 class="service-title">Monitoramento em Tempo Real</h3>
+                    <p class="service-description">
+                        Sistema completo de coleta e análise de dados industriais com sensores 
+                        inteligentes e dashboards personalizados.
+                    </p>
+                    <ul class="service-features">
+                        <li>Histórico completo de temperatura, pressão e umidade</li>
+                        <li>Alertas automáticos de anomalias</li>
+                        <li>Relatórios mensais e anuais</li>
+                        <li>Acesso via web e mobile</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <span class="service-icon">📸</span>
+                    <h3 class="service-title">Análise de Fluxo com IA</h3>
+                    <p class="service-description">
+                        Câmeras inteligentes que contam pessoas e analisam padrões de 
+                        movimento para otimização de negócios.
+                    </p>
+                    <ul class="service-features">
+                        <li>Contagem automática de clientes</li>
+                        <li>Mapa de calor das áreas mais visitadas</li>
+                        <li>Análise de horários de pico</li>
+                        <li>Insights para promoções estratégicas</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <span class="service-icon">🌱</span>
+                    <h3 class="service-title">Automação Agrícola</h3>
+                    <p class="service-description">
+                        Sistemas automatizados para hidroponia e agricultura com 
+                        controle total via computador ou smartphone.
+                    </p>
+                    <ul class="service-features">
+                        <li>Irrigação automática inteligente</li>
+                        <li>Controle de pH e nutrientes</li>
+                        <li>Monitoramento 24/7 da plantação</li>
+                        <li>Economia significativa de recursos</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <span class="service-icon">📦</span>
+                    <h3 class="service-title">Plataforma de Rastreamento</h3>
+                    <p class="service-description">
+                        Sistema completo de acompanhamento de cargas com login 
+                        personalizado para cada cliente.
+                    </p>
+                    <ul class="service-features">
+                        <li>Tracking em tempo real estilo Mercado Livre</li>
+                        <li>Upload de fotos e documentos</li>
+                        <li>Notificações automáticas</li>
+                        <li>Histórico completo de entregas</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <span class="service-icon">🌐</span>
+                    <h3 class="service-title">Sites e Landing Pages</h3>
+                    <p class="service-description">
+                        Desenvolvimento de sites profissionais com QR Code 
+                        para produtos e serviços.
+                    </p>
+                    <ul class="service-features">
+                        <li>Design moderno e responsivo</li>
+                        <li>QR Code personalizado</li>
+                        <li>Integração com redes sociais</li>
+                        <li>Otimizado para conversão</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <span class="service-icon">⚡</span>
+                    <h3 class="service-title">IoT Industrial</h3>
+                    <p class="service-description">
+                        Conectamos máquinas e equipamentos à internet para 
+                        gestão remota e manutenção preditiva.
+                    </p>
+                    <ul class="service-features">
+                        <li>Arduino e Raspberry Pi</li>
+                        <li>Sensores customizados</li>
+                        <li>Dashboard em nuvem</li>
+                        <li>Redução de paradas não programadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase -->
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Casos de Sucesso</h2>
+            <p class="section-subtitle">Transformando negócios com tecnologia inteligente</p>
+            
+            <div class="project-showcase">
+                <div class="project-card">
+                    <div class="project-emoji">🏭</div>
+                    <h4 class="project-name">Indústria 4.0</h4>
+                    <p class="project-desc">
+                        Sistemas de monitoramento que reduzem perdas e 
+                        otimizam o controle de estoque e produção.
+                    </p>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-emoji">🛒</div>
+                    <h4 class="project-name">Varejo Inteligente</h4>
+                    <p class="project-desc">
+                        Análise de fluxo para entender melhor seus clientes 
+                        e otimizar estratégias de vendas.
+                    </p>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-emoji">🚚</div>
+                    <h4 class="project-name">Logística Digital</h4>
+                    <p class="project-desc">
+                        Plataformas que melhoram a comunicação com clientes 
+                        e aumentam a transparência nas entregas.
+                    </p>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-emoji">🥬</div>
+                    <h4 class="project-name">Agro Tech</h4>
+                    <p class="project-desc">
+                        Automação que reduz desperdícios e maximiza a 
+                        produtividade agrícola.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Vamos Transformar Seu Negócio?</h2>
+            <p class="section-subtitle">
+                Entre em contato agora e descubra como podemos criar a 
+                <span class="highlight-text">solução perfeita</span> para sua empresa
+            </p>
+            
+            <div class="contact-grid">
+                <a href="https://wa.me/5571996777960?text=Olá! Vi o site da Tavares Sistemas e gostaria de saber mais sobre as soluções." 
+                   class="contact-button whatsapp-button" target="_blank">
+                    <span>💬</span>
+                    WhatsApp
+                </a>
+                
+                <a href="mailto:tavares.tsa@gmail.com" class="contact-button">
+                    <span>✉️</span>
+                    E-mail
+                </a>
+                
+                <a href="tel:+5571996777960" class="contact-button">
+                    <span>📞</span>
+                    Ligar Agora
+                </a>
+            </div>
+            
+            <div class="contact-info">
+                <p>📱 (71) 99677-7960 | 📧 tavares.tsa@gmail.com</p>
+                <p style="margin-top: 40px; color: #444; font-size: 0.85rem;">
+                    Copyright © 2025 Tavares Sistemas e Automação<br>
+                    Todos os direitos reservados
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5571996777960?text=Olá! Vi o site da Tavares Sistemas e gostaria de saber mais sobre as soluções." 
+       class="floating-whatsapp" target="_blank">
+        💬
+    </a>
+
+    <script>
+        function scrollToContent() {
+            document.getElementById('content').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Add animation when elements come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.service-card, .project-card, .section-title, .section-subtitle').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Add smooth parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add click tracking
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('Link clicked:', this.href);
+            });
+        });
+    </script>
+</body>
+</html>
