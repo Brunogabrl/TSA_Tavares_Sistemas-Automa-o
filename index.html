@@ -264,18 +264,33 @@
             font-size: 0.95rem;
         }
 
-        .service-features li {
-            padding: 5px 0;
-            padding-left: 20px;
+            .service-features li {
             position: relative;
+            padding-left: 25px; /* espaço para a seta */
         }
 
+        /* Sombra da seta */
         .service-features li:before {
-            content: "→";
+            content: "▸";
             position: absolute;
-            left: 0;
-            color: #0099ff;
+            left: 2px;  /* deslocamento da sombra */
+            top: 2px;
+            color: #313138;
+            font-weight: bold;
+            z-index: 0;
         }
+
+        /* Seta principal */
+        .service-features li:after {
+            content: "▸";
+            position: absolute;
+            left: 0;  /* posição da seta principal */
+            top: 0;
+            color: #2f20d6;
+            font-weight: bold;
+            z-index: 1;
+        }
+
 
         /* Projects Section */
         .projects-section {
@@ -545,143 +560,138 @@
     <!-- Main Services -->
     <section class="content" id="content">
         <div class="container">
-            <h2 class="section-title">Soluções Inteligentes para Sua Indústria</h2>
+            <h2 class="section-title">Soluções Inteligentes para Sua Empresa</h2>
             <p class="section-subtitle">Transformamos dados em decisões estratégicas</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <span class="service-icon">📊</span>
-                    <h3 class="service-title">Monitoramento em Tempo Real</h3>
-                    <p class="service-description">
-                        Sistema completo de coleta e análise de dados industriais com sensores 
-                        inteligentes e dashboards personalizados.
-                    </p>
-                    <ul class="service-features">
-                        <li>Histórico completo de temperatura, pressão e umidade</li>
-                        <li>Alertas automáticos de anomalias</li>
-                        <li>Relatórios mensais e anuais</li>
-                        <li>Acesso via web e mobile</li>
-                    </ul>
-                </div>
                 
-                <div class="service-card">
-                    <span class="service-icon">📸</span>
-                    <h3 class="service-title">Análise de Fluxo com IA</h3>
-                    <p class="service-description">
-                        Câmeras inteligentes que contam pessoas e analisam padrões de 
-                        movimento para otimização de negócios.
-                    </p>
-                    <ul class="service-features">
-                        <li>Contagem automática de clientes</li>
-                        <li>Mapa de calor das áreas mais visitadas</li>
-                        <li>Análise de horários de pico</li>
-                        <li>Insights para promoções estratégicas</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card">
-                    <span class="service-icon">🌱</span>
-                    <h3 class="service-title">Automação Agrícola</h3>
-                    <p class="service-description">
-                        Sistemas automatizados para hidroponia e agricultura com 
-                        controle total via computador ou smartphone.
-                    </p>
-                    <ul class="service-features">
-                        <li>Irrigação automática inteligente</li>
-                        <li>Controle de pH e nutrientes</li>
-                        <li>Monitoramento 24/7 da plantação</li>
-                        <li>Economia significativa de recursos</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card">
-                    <span class="service-icon">📦</span>
-                    <h3 class="service-title">Plataforma de Rastreamento</h3>
-                    <p class="service-description">
-                        Sistema completo de acompanhamento de cargas com login 
-                        personalizado para cada cliente.
-                    </p>
-                    <ul class="service-features">
-                        <li>Tracking em tempo real estilo Mercado Livre</li>
-                        <li>Upload de fotos e documentos</li>
-                        <li>Notificações automáticas</li>
-                        <li>Histórico completo de entregas</li>
-                    </ul>
-                </div>
-                
-                <div class="service-card">
-                    <span class="service-icon">🌐</span>
-                    <h3 class="service-title">Sites e Landing Pages</h3>
-                    <p class="service-description">
-                        Desenvolvimento de sites profissionais com QR Code 
-                        para produtos e serviços.
-                    </p>
-                    <ul class="service-features">
-                        <li>Design moderno e responsivo</li>
-                        <li>QR Code personalizado</li>
-                        <li>Integração com redes sociais</li>
-                        <li>Otimizado para conversão</li>
-                    </ul>
-                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="service-icon">📊</span>
+                        <h3 class="service-title">Monitoramento Inteligente</h3>
+                        <p class="service-description">
+                            Tenha uma visão clara e centralizada do desempenho da sua operação em tempo real.
+                        </p>
+                        <ul class="service-features">
+                            <li>Dashboards visuais e fáceis de interpretar</li>
+                            <li>Alertas automáticos para maior segurança</li>
+                            <li>Relatórios personalizados</li>
+                            <li>Acesso em qualquer dispositivo</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <span class="service-icon">📸</span>
+                        <h3 class="service-title">Análise com Inteligência Artificial</h3>
+                        <p class="service-description">
+                            Soluções que identificam padrões e otimizam a tomada de decisão para o seu negócio.
+                        </p>
+                        <ul class="service-features">
+                            <li>Mapeamento de fluxo de pessoas</li>
+                            <li>Identificação de oportunidades de melhoria</li>
+                            <li>Relatórios de comportamento</li>
+                            <li>Insights estratégicos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <span class="service-icon">🌱</span>
+                        <h3 class="service-title">Tecnologia para o Agro</h3>
+                        <p class="service-description">
+                            Automação que aumenta a produtividade, reduz custos e leva inteligência ao campo.
+                        </p>
+                        <ul class="service-features">
+                            <li>Irrigação e controle automatizado</li>
+                            <li>Gestão de nutrientes e qualidade</li>
+                            <li>Monitoramento 24/7</li>
+                            <li>Uso eficiente de recursos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <span class="service-icon">📦</span>
+                        <h3 class="service-title">Gestão Logística</h3>
+                        <p class="service-description">
+                            Acompanhe seus processos logísticos com total transparência e segurança.
+                        </p>
+                        <ul class="service-features">
+                            <li>Rastreamento em tempo real</li>
+                            <li>Documentos e fotos integrados</li>
+                            <li>Notificações automáticas</li>
+                            <li>Histórico detalhado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <span class="service-icon">🌐</span>
+                        <h3 class="service-title">Presença Digital</h3>
+                        <p class="service-description">
+                            Sites modernos e responsivos para fortalecer sua marca no ambiente online.
+                        </p>
+                        <ul class="service-features">
+                            <li>Design profissional e adaptável</li>
+                            <li>Integração com redes sociais</li>
+                            <li>Ferramentas de conversão</li>
+                            <li>QR Codes personalizados</li>
+                        </ul>
+                    </div>
                 
                 <div class="service-card">
                     <span class="service-icon">⚡</span>
                     <h3 class="service-title">IoT Industrial</h3>
                     <p class="service-description">
-                        Conectamos máquinas e equipamentos à internet para 
-                        gestão remota e manutenção preditiva.
+                        Integre sensores e dispositivos à sua rede para coletar dados em tempo real 
+                        e controlar processos de qualquer lugar.
                     </p>
                     <ul class="service-features">
-                        <li>Arduino e Raspberry Pi</li>
-                        <li>Sensores customizados</li>
-                        <li>Dashboard em nuvem</li>
-                        <li>Redução de paradas não programadas</li>
+                        <li>Instalação de sensores personalizados</li>
+                        <li>Coleta e análise de dados online</li>
+                        <li>Painéis de controle acessíveis pela web</li>
+                        <li>Maior eficiência operacional</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Showcase -->
+    <!-- Sectors Showcase -->
     <section class="projects-section">
         <div class="container">
-            <h2 class="section-title">Casos de Sucesso</h2>
-            <p class="section-subtitle">Transformando negócios com tecnologia inteligente</p>
+            <h2 class="section-title">Setores que Atendemos</h2>
+            <p class="section-subtitle">Tecnologia aplicada a diferentes segmentos do mercado</p>
             
             <div class="project-showcase">
                 <div class="project-card">
                     <div class="project-emoji">🏭</div>
-                    <h4 class="project-name">Indústria 4.0</h4>
+                    <h4 class="project-name">Indústria</h4>
                     <p class="project-desc">
-                        Sistemas de monitoramento que reduzem perdas e 
-                        otimizam o controle de estoque e produção.
+                        Soluções de automação e monitoramento que aumentam a eficiência 
+                        e reduzem custos operacionais.
                     </p>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-emoji">🛒</div>
-                    <h4 class="project-name">Varejo Inteligente</h4>
+                    <h4 class="project-name">Varejo</h4>
                     <p class="project-desc">
-                        Análise de fluxo para entender melhor seus clientes 
-                        e otimizar estratégias de vendas.
+                        Inteligência de fluxo e análise de dados para entender melhor os clientes 
+                        e impulsionar as vendas.
                     </p>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-emoji">🚚</div>
-                    <h4 class="project-name">Logística Digital</h4>
+                    <h4 class="project-name">Logística</h4>
                     <p class="project-desc">
-                        Plataformas que melhoram a comunicação com clientes 
-                        e aumentam a transparência nas entregas.
+                        Rastreamento em tempo real e plataformas digitais que trazem mais 
+                        transparência e controle às operações.
                     </p>
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-emoji">🥬</div>
-                    <h4 class="project-name">Agro Tech</h4>
+                    <div class="project-emoji">🌱</div>
+                    <h4 class="project-name">Agronegócio</h4>
                     <p class="project-desc">
-                        Automação que reduz desperdícios e maximiza a 
-                        produtividade agrícola.
+                        Automação e IoT que aumentam a produtividade no campo 
+                        e promovem o uso eficiente de recursos.
                     </p>
                 </div>
             </div>
