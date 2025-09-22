@@ -59,7 +59,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #252525 100%);
+            background: linear-gradient(135deg, #020003 38%, #1b191c 80%, #343235 100%);
         }
 
         .logo-container {
@@ -67,9 +67,10 @@
             animation: fadeInDown 1s ease-out;
         }
 
+        /* LOGO PRINCIPAL TAVARES (logo-tavares.png) */
         .logo-image {
-            width: 500px;
-            height: auto;
+            width: 500px;       /* ← AJUSTE AQUI O TAMANHO DO LOGO PRINCIPAL */
+            height: auto;       /* ← height: auto mantém a proporção */
             filter: brightness(1.1) contrast(1.1);
             animation: glow 3s ease-in-out infinite alternate;
         }
@@ -166,19 +167,21 @@
 
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #0099ff;
+            bottom: -10px; /* garante que elas nasçam fora da tela */
+            width: 6px;
+            height: 6px;
+            background: #0016E6;
             opacity: 0.3;
-            animation: float 15s infinite linear;
+            border-radius: 50%;
+            animation: float 6s infinite linear;
         }
 
         @keyframes float {
             from {
-                transform: translateY(100vh) translateX(0);
+                transform: translateY(0) translateX(0);
             }
             to {
-                transform: translateY(-10vh) translateX(100px);
+                transform: translateY(-110vh) translateX(100px);
             }
         }
 
@@ -186,7 +189,7 @@
         .content {
             min-height: 100vh;
             padding: 100px 20px;
-            background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            background: linear-gradient(180deg, #E7E7E7 0%, #868686 50%, #3D3D3D 100%);
             position: relative;
         }
 
@@ -198,7 +201,7 @@
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, #0099ff 0%, #00ffff 100%);
+            background: linear-gradient(135deg, #0016E6 0%, #4254FF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -236,14 +239,23 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            border-color: #0099ff;
+            border-color: #0016E6;
             box-shadow: 0 20px 40px rgba(0, 153, 255, 0.2);
         }
 
+        /* ÍCONES DOS SERVIÇOS PRINCIPAIS (dashboard, ai-camera, agriculture, logistics, website, iot) */
         .service-icon {
-            font-size: 3rem;
+            width: 48px;        /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE SERVIÇOS */
+            height: 48px;       /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE SERVIÇOS */
             margin-bottom: 20px;
             display: block;
+            filter: brightness(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            filter: brightness(1.3);
         }
 
         .service-title {
@@ -295,7 +307,7 @@
         /* Projects Section */
         .projects-section {
             padding: 100px 20px;
-            background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 50%, #1f1f1f 100%);
+            background: linear-gradient(180deg, #FFFFFF 0%, #B6B6B6 50%, #3D3D3D 100%);
         }
 
         .project-showcase {
@@ -321,9 +333,18 @@
             box-shadow: 0 15px 30px rgba(0, 255, 136, 0.15);
         }
 
-        .project-emoji {
-            font-size: 2.5rem;
+        /* ÍCONES DOS SETORES (industry, retail, truck, agribusiness) */
+        .project-icon {
+            width: 40px;        /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE SETORES */
+            height: 40px;       /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE SETORES */
             margin-bottom: 15px;
+            filter: brightness(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1);
+            filter: brightness(1.3);
         }
 
         .project-name {
@@ -372,6 +393,13 @@
             color: #000;
             box-shadow: 0 10px 30px rgba(0, 153, 255, 0.5);
             transform: translateY(-3px);
+        }
+
+        /* ÍCONES DE CONTATO (whatsapp, email, phone) */
+        .contact-icon {
+            width: 24px;        /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE CONTATO */
+            height: 24px;       /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE CONTATO */
+            filter: brightness(1.1);
         }
 
         .whatsapp-button {
@@ -436,7 +464,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .logo-image {
-                width: 400px;
+                width: 500px;
             }
             
             .section-title {
@@ -469,28 +497,35 @@
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards, bounce 2s infinite 2s;
+            animation: fadeIn 1s ease-out forwards, bounce 2s infinite 1s;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
 
+        /* SETA DE SCROLL (arrow-down.png) */
         .scroll-indicator::after {
-            content: "↓";
-            font-size: 24px;
-            color: #444;
+            content: "";
+            width: 24px;        /* ← AJUSTE AQUI O TAMANHO DA SETA DE SCROLL */
+            height: 24px;       /* ← AJUSTE AQUI O TAMANHO DA SETA DE SCROLL */
+            background-image: url('icons/arrow-down.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: block;
         }
+        
 
-        /* Floating WhatsApp Button */
+
+        /* BOTÃO WHATSAPP FLUTUANTE (whatsapp.png) */
         .floating-whatsapp {
             position: fixed;
             bottom: 30px;
@@ -502,13 +537,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            color: white;
             text-decoration: none;
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
             transition: all 0.3s ease;
             z-index: 1000;
             animation: floatButton 3s ease-in-out infinite;
+        }
+
+        .floating-whatsapp img {
+            width: 30px;        /* ← AJUSTE AQUI O TAMANHO DO ÍCONE WHATSAPP FLUTUANTE */
+            height: 30px;       /* ← AJUSTE AQUI O TAMANHO DO ÍCONE WHATSAPP FLUTUANTE */
+            filter: brightness(1.2);
         }
 
         @keyframes floatButton {
@@ -529,21 +568,50 @@
             color: #00ff88;
             font-weight: 600;
         }
+
+        /* LOGO TSA (logo-tsa.png) */
+        .tsa-logo {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 80px;        /* ← AJUSTE AQUI O TAMANHO DO LOGO TSA */
+            height: auto;       /* ← height: auto mantém a proporção */
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .tsa-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .tsa-logo {
+                width: 80px;    /* ← TAMANHO DO LOGO TSA NO MOBILE */
+                top: 18px;
+                right: 18px;
+            }
+        }
+        
     </style>
 </head>
 <body>
     <!-- Hero Section -->
     <section class="hero" id="hero">
+        
+        <img src="logo-tsa.png" alt="TSA" class="tsa-logo">
+
         <div class="particles">
-            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-            <div class="particle" style="left: 20%; animation-delay: 3s;"></div>
-            <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-            <div class="particle" style="left: 40%; animation-delay: 5s;"></div>
-            <div class="particle" style="left: 50%; animation-delay: 1s;"></div>
-            <div class="particle" style="left: 60%; animation-delay: 4s;"></div>
-            <div class="particle" style="left: 70%; animation-delay: 2s;"></div>
-            <div class="particle" style="left: 80%; animation-delay: 3s;"></div>
-            <div class="particle" style="left: 90%; animation-delay: 1s;"></div>
+         <div class="particle" style="left: 7%; animation-delay: 0s;"></div>
+         <div class="particle" style="left: 18%; animation-delay: 1.5s;"></div>
+         <div class="particle" style="left: 26%; animation-delay: 4s;"></div>
+         <div class="particle" style="left: 42%; animation-delay: 2.2s;"></div>
+         <div class="particle" style="left: 55%; animation-delay: 0.8s;"></div>
+         <div class="particle" style="left: 63%; animation-delay: 3.7s;"></div>
+         <div class="particle" style="left: 72%; animation-delay: 5s;"></div>
+         <div class="particle" style="left: 84%; animation-delay: 1.3s;"></div>
+         <div class="particle" style="left: 92%; animation-delay: 2.8s;"></div>
+         <div class="particle" style="left: 96%; animation-delay: 4.5s;"></div>
         </div>
         
         <div class="logo-container">
@@ -565,7 +633,7 @@
                 
                 <div class="services-grid">
                     <div class="service-card">
-                        <span class="service-icon">📊</span>
+                        <img src="icons/dashboard.png" alt="Dashboard" class="service-icon">
                         <h3 class="service-title">Monitoramento Inteligente</h3>
                         <p class="service-description">
                             Tenha uma visão clara e centralizada do desempenho da sua operação em tempo real.
@@ -579,7 +647,7 @@
                     </div>
                     
                     <div class="service-card">
-                        <span class="service-icon">📸</span>
+                        <img src="icons/ai-camera.png" alt="IA e Câmeras" class="service-icon">
                         <h3 class="service-title">Análise com Inteligência Artificial</h3>
                         <p class="service-description">
                             Soluções que identificam padrões e otimizam a tomada de decisão para o seu negócio.
@@ -593,7 +661,7 @@
                     </div>
                     
                     <div class="service-card">
-                        <span class="service-icon">🌱</span>
+                        <img src="icons/agriculture.png" alt="Agricultura" class="service-icon">
                         <h3 class="service-title">Tecnologia para o Agro</h3>
                         <p class="service-description">
                             Automação que aumenta a produtividade, reduz custos e leva inteligência ao campo.
@@ -607,7 +675,7 @@
                     </div>
                     
                     <div class="service-card">
-                        <span class="service-icon">📦</span>
+                        <img src="icons/logistics.png" alt="Logística" class="service-icon">
                         <h3 class="service-title">Gestão Logística</h3>
                         <p class="service-description">
                             Acompanhe seus processos logísticos com total transparência e segurança.
@@ -621,7 +689,7 @@
                     </div>
                     
                     <div class="service-card">
-                        <span class="service-icon">🌐</span>
+                        <img src="icons/website.png" alt="Website" class="service-icon">
                         <h3 class="service-title">Presença Digital</h3>
                         <p class="service-description">
                             Sites modernos e responsivos para fortalecer sua marca no ambiente online.
@@ -635,7 +703,7 @@
                     </div>
                 
                 <div class="service-card">
-                    <span class="service-icon">⚡</span>
+                    <img src="icons/iot.png" alt="IoT" class="service-icon">
                     <h3 class="service-title">IoT Industrial</h3>
                     <p class="service-description">
                         Integre sensores e dispositivos à sua rede para coletar dados em tempo real 
@@ -660,7 +728,7 @@
             
             <div class="project-showcase">
                 <div class="project-card">
-                    <div class="project-emoji">🏭</div>
+                    <img src="icons/industry.png" alt="Indústria" class="project-icon">
                     <h4 class="project-name">Indústria</h4>
                     <p class="project-desc">
                         Soluções de automação e monitoramento que aumentam a eficiência 
@@ -669,7 +737,7 @@
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-emoji">🛒</div>
+                    <img src="icons/retail.png" alt="Varejo" class="project-icon">
                     <h4 class="project-name">Varejo</h4>
                     <p class="project-desc">
                         Inteligência de fluxo e análise de dados para entender melhor os clientes 
@@ -678,7 +746,7 @@
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-emoji">🚚</div>
+                    <img src="icons/truck.png" alt="Logística" class="project-icon">
                     <h4 class="project-name">Logística</h4>
                     <p class="project-desc">
                         Rastreamento em tempo real e plataformas digitais que trazem mais 
@@ -687,7 +755,7 @@
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-emoji">🌱</div>
+                    <img src="icons/agribusiness.png" alt="Agronegócio" class="project-icon">
                     <h4 class="project-name">Agronegócio</h4>
                     <p class="project-desc">
                         Automação e IoT que aumentam a produtividade no campo 
@@ -708,25 +776,25 @@
             </p>
             
             <div class="contact-grid">
-                <a href="https://wa.me/5571996777960?text=Olá! Vi o site da Tavares Sistemas e gostaria de saber mais sobre as soluções." 
+                <a href="https://wa.me/5571996777960?text=Olá! Vi o site da TSA - Tavares Sistemas & Automação e gostaria de saber mais sobre as soluções." 
                    class="contact-button whatsapp-button" target="_blank">
-                    <span>💬</span>
+                    <img src="icons/whatsapp.png" alt="WhatsApp" class="contact-icon">
                     WhatsApp
                 </a>
                 
-                <a href="mailto:tavares.tsa@gmail.com" class="contact-button">
-                    <span>✉️</span>
+                <a href="mailto:brunotavares.tsa@gmail.com" class="contact-button">
+                    <img src="icons/email.png" alt="Email" class="contact-icon">
                     E-mail
                 </a>
                 
                 <a href="tel:+5571996777960" class="contact-button">
-                    <span>📞</span>
+                    <img src="icons/phone.png" alt="Telefone" class="contact-icon">
                     Ligar Agora
                 </a>
             </div>
             
             <div class="contact-info">
-                <p>📱 (71) 99677-7960 | 📧 tavares.tsa@gmail.com</p>
+                <p>📱 (71) 99677-7960 | 📧 brunotavares.tsa@gmail.com</p>
                 <p style="margin-top: 40px; color: #444; font-size: 0.85rem;">
                     Copyright © 2025 Tavares Sistemas e Automação<br>
                     Todos os direitos reservados
@@ -738,7 +806,7 @@
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/5571996777960?text=Olá! Vi o site da Tavares Sistemas e gostaria de saber mais sobre as soluções." 
        class="floating-whatsapp" target="_blank">
-        💬
+        <img src="icons/whatsapp.png" alt="WhatsApp">
     </a>
 
     <script>

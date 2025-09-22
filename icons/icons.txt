@@ -1,0 +1,14 @@
+dashboard.png - para monitoramento
+ai-camera.png - para inteligência artificial
+agriculture.png - para agro
+logistics.png - para gestão logística
+website.png - para presença digital
+iot.png - para IoT industrial
+industry.png - para indústria
+retail.png - para varejo
+truck.png - para logística
+agribusiness.png - para agronegócio
+whatsapp.png - para WhatsApp
+email.png - para email
+phone.png - para telefone
+arrow-down.png - para a seta de scroll
