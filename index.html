@@ -859,13 +859,10 @@
 
     <script>
         function scrollToContent() {
-            const contentSection = document.getElementById('content');
-            if (contentSection) {
-                const topOffset = contentSection.getBoundingClientRect().top + window.pageYOffset - 20; // -20px de margem opcional
-                window.scrollTo({
-                    top: topOffset,
-                    behavior: 'smooth'
-                });
+            const content = document.getElementById('content');
+            if (content) {
+                const top = content.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({ top, behavior: 'smooth' });
             }
         }
 
@@ -883,27 +880,23 @@
             });
         }, observerOptions);
 
-        // Observe all animated elements
         document.querySelectorAll('.service-card, .project-card, .section-title, .section-subtitle').forEach(el => {
             el.style.animationPlayState = 'paused';
             observer.observe(el);
         });
 
-        // Simplified scroll effects
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Add fade effect when scrolling
-            if (scrolled > 100) {
+            if (window.pageYOffset > 100) {
                 document.body.classList.add('show-top-fade');
             } else {
                 document.body.classList.remove('show-top-fade');
             }
         });
 
-        // Add click tracking
+        // Optional: track clicks
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function() {
                 console.log('Link clicked:', this.href);
             });
         });
+    </script>
