@@ -874,13 +874,9 @@
 
     <script>
         function scrollToContent() {
-            const contentSection = document.getElementById('content');
-            const heroHeight = document.getElementById('hero').offsetHeight;
-            
-            // Rola para que a seção de conteúdo fique totalmente visível
-            window.scrollTo({
-                top: heroHeight,
-                behavior: 'smooth'
+            document.getElementById('content').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
             });
         }
 
