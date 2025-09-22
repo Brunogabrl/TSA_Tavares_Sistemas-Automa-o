@@ -107,7 +107,7 @@
             position: absolute;
             top: 30px;
             right: 30px;
-            width: 300px;
+            width: 200px;
             height: auto;
             opacity: 0.9;
             transition: all 0.3s ease;
@@ -130,7 +130,7 @@
 
         /* Título principal moderno */
         .hero-title {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2rem, 6vw, 4.5rem);
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 20px;
@@ -203,12 +203,19 @@
         /* Indicador de scroll minimalista */
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
             animation: fadeIn 1s ease-out 1.5s both, bounce 2s infinite 2s;
             cursor: pointer;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-indicator {
+                bottom: 80px; /* Mais espaço do fundo no mobile */
+            }
         }
 
         .scroll-arrow {
@@ -278,6 +285,22 @@
                 padding: 16px 32px;
                 font-size: 1rem;
             }
+
+            /* Ajusta altura no mobile para garantir que a seta fique visível */
+            .hero {
+                height: 100vh;
+                min-height: 600px; /* Altura mínima para telas muito pequenas */
+            }
+
+            .hero-title {
+                font-size: 2rem; /* Fonte um pouco menor no mobile */
+                margin-bottom: 15px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
         }
 
         /* Scroll fade indicators */
@@ -319,6 +342,21 @@
             padding: 100px 20px;
             background: linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 50%, #FFFFFF 100%);
             position: relative;
+            margin-top: 0; /* Remove qualquer margem */
+        }
+
+        /* Garante que a seção hero ocupe exatamente 100vh */
+        .hero {
+            height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow: hidden;
         }
 
         .container {
@@ -640,7 +678,7 @@
                 para impulsionar o crescimento do seu negócio
             </p>
             <button class="cta-button" onclick="scrollToContent()">
-                Conheça nossas soluções
+                Conhecer Soluções
             </button>
         </div>
         
@@ -836,9 +874,13 @@
 
     <script>
         function scrollToContent() {
-            document.getElementById('content').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
+            const contentSection = document.getElementById('content');
+            const heroHeight = document.getElementById('hero').offsetHeight;
+            
+            // Rola para que a seção de conteúdo fique totalmente visível
+            window.scrollTo({
+                top: heroHeight,
+                behavior: 'smooth'
             });
         }
 
@@ -858,4 +900,25 @@
 
         // Observe all animated elements
         document.querySelectorAll('.service-card, .project-card, .section-title, .section-subtitle').forEach(el => {
-            el.style.animationPlayState = 'pa
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Simplified scroll effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            
+            // Add fade effect when scrolling
+            if (scrolled > 100) {
+                document.body.classList.add('show-top-fade');
+            } else {
+                document.body.classList.remove('show-top-fade');
+            }
+        });
+
+        // Add click tracking
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('Link clicked:', this.href);
+            });
+        });
