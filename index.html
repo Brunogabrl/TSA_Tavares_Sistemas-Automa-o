@@ -860,7 +860,13 @@
     <script>
         function scrollToContent() {
             const contentSection = document.getElementById('content');
-            contentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (contentSection) {
+                const topOffset = contentSection.getBoundingClientRect().top + window.pageYOffset - 20; // -20px de margem opcional
+                window.scrollTo({
+                    top: topOffset,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // Add animation when elements come into view
