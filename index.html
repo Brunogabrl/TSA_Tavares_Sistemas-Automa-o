@@ -20,6 +20,266 @@
             position: relative;
         }
 
+        /* NOVA HERO SECTION - DESIGN PROFISSIONAL */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow: hidden;
+        }
+
+        /* Grid pattern subtle background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating geometric shapes */
+        .hero-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            top: 20%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #0099ff, #00ff88);
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 15%;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            transform: rotate(45deg);
+            animation-delay: 5s;
+        }
+
+        .shape-3 {
+            bottom: 30%;
+            left: 20%;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        /* Logo TSA no canto */
+        .tsa-logo {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 300px;
+            height: auto;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .tsa-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Container principal do hero */
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+            z-index: 5;
+            position: relative;
+        }
+
+        /* Título principal moderno */
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Subtítulo elegante */
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.5;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Destaque no subtítulo */
+        .highlight {
+            color: #00ff88;
+            font-weight: 500;
+        }
+
+        /* CTA Button melhorado */
+        .cta-button {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 255, 136, 0.5);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Indicador de scroll minimalista */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s both, bounce 2s infinite 2s;
+            cursor: pointer;
+        }
+
+        .scroll-arrow {
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(180deg, transparent, #00ff88, transparent);
+            margin: 0 auto 10px;
+            position: relative;
+        }
+
+        .scroll-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -3px;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid #00ff88;
+            border-bottom: 2px solid #00ff88;
+            transform: rotate(45deg);
+        }
+
+        .scroll-text {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Responsive para mobile */
+        @media (max-width: 768px) {
+            .tsa-logo {
+                width: 200px;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .hero-content {
+                padding: 0 15px;
+            }
+            
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 1rem;
+            }
+        }
+
         /* Scroll fade indicators */
         body::before {
             content: '';
@@ -51,139 +311,7 @@
             opacity: 1;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            background: linear-gradient(135deg, #020003 38%, #1b191c 80%, #343235 100%);
-        }
-
-        .logo-container {
-            margin-bottom: 60px;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        /* LOGO PRINCIPAL TAVARES (logo-tavares.png) */
-        .logo-image {
-            width: 500px;       /* ← AJUSTE AQUI O TAMANHO DO LOGO PRINCIPAL */
-            height: auto;       /* ← height: auto mantém a proporção */
-            filter: brightness(1.1) contrast(1.1);
-            animation: glow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 20px rgba(255,255,255,0.3));
-            }
-            to {
-                filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 40px rgba(255,255,255,0.5));
-            }
-        }
-
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(255,255,255,0.1);
-        }
-
-        .logo-subtitle {
-            font-size: 1.1rem;
-            color: #888;
-            text-align: center;
-            margin-top: 10px;
-            letter-spacing: 3px;
-            font-weight: 300;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #000;
-            cursor: pointer;
-            border-radius: 50px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
-            max-width: 90%;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 768px) {
-            .cta-button {
-                padding: 16px 30px;
-                font-size: 1rem;
-                box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 60px rgba(0, 255, 136, 0.7);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
-            }
-        }
-
-        .cta-button:hover {
-            transform: scale(1.1);
-            animation: none;
-            box-shadow: 0 0 80px rgba(0, 255, 136, 0.8);
-        }
-
-        .cta-button:active {
-            transform: scale(0.98);
-        }
-
-        /* Animated background particles */
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            bottom: -10px; /* garante que elas nasçam fora da tela */
-            width: 6px;
-            height: 6px;
-            background: #0016E6;
-            opacity: 0.3;
-            border-radius: 50%;
-            animation: float 6s infinite linear;
-        }
-
-        @keyframes float {
-            from {
-                transform: translateY(0) translateX(0);
-            }
-            to {
-                transform: translateY(-110vh) translateX(100px);
-            }
-        }
+        /* === RESTO DO CSS MANTIDO IGUAL === */
 
         /* Main Content Section */
         .content {
@@ -243,10 +371,9 @@
             box-shadow: 0 0px 30px rgb(0, 26, 255);
         }
 
-        /* ÍCONES DOS SERVIÇOS PRINCIPAIS (dashboard, ai-camera, agriculture, logistics, website, iot) */
         .service-icon {
-            width: 48px;        /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE SERVIÇOS */
-            height: 48px;       /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE SERVIÇOS */
+            width: 48px;
+            height: 48px;
             margin-bottom: 20px;
             display: block;
             filter: brightness(1.1);
@@ -276,33 +403,30 @@
             font-size: 0.95rem;
         }
 
-            .service-features li {
+        .service-features li {
             position: relative;
-            padding-left: 25px; /* espaço para a seta */
+            padding-left: 25px;
         }
 
-        /* Sombra da seta */
         .service-features li:before {
             content: "▸";
             position: absolute;
-            left: 2px;  /* deslocamento da sombra */
+            left: 2px;
             top: 2px;
             color: #313138;
             font-weight: bold;
             z-index: 0;
         }
 
-        /* Seta principal */
         .service-features li:after {
             content: "▸";
             position: absolute;
-            left: 0;  /* posição da seta principal */
+            left: 0;
             top: 0;
             color: #2f20d6;
             font-weight: bold;
             z-index: 1;
         }
-
 
         /* Projects Section */
         .projects-section {
@@ -333,10 +457,9 @@
             box-shadow: 0 0px 30px rgb(0, 255, 136);
         }
 
-        /* ÍCONES DOS SETORES (industry, retail, truck, agribusiness) */
         .project-icon {
-            width: 40px;        /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE SETORES */
-            height: 40px;       /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE SETORES */
+            width: 40px;
+            height: 40px;
             margin-bottom: 15px;
             filter: brightness(1.1);
             transition: all 0.3s ease;
@@ -395,10 +518,9 @@
             transform: translateY(-3px);
         }
 
-        /* ÍCONES DE CONTATO (whatsapp, email, phone) */
         .contact-icon {
-            width: 24px;        /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE CONTATO */
-            height: 24px;       /* ← AJUSTE AQUI O TAMANHO DOS ÍCONES DE CONTATO */
+            width: 24px;
+            height: 24px;
             filter: brightness(1.1);
         }
 
@@ -420,13 +542,6 @@
             font-size: 0.9rem;
         }
 
-        /* Section separators for more professional look */
-        .content,
-        .projects-section,
-        .contact-section {
-            position: relative;
-        }
-        
         .content::after,
         .projects-section::after {
             content: '';
@@ -438,94 +553,6 @@
             background: linear-gradient(90deg, transparent, #222, transparent);
         }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .logo-image {
-                width: 400px;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-showcase {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .contact-button {
-                width: 250px;
-                justify-content: center;
-            }
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards, bounce 2s infinite 1s;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* SETA DE SCROLL (arrow-down.png) */
-        .scroll-indicator::after {
-            content: "";
-            width: 28px;        /* ← AJUSTE AQUI O TAMANHO DA SETA DE SCROLL */
-            height: 28px;       /* ← AJUSTE AQUI O TAMANHO DA SETA DE SCROLL */
-            background-image: url('icons/arrow-down.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            display: block;
-        }
-        
-
-
-        /* BOTÃO WHATSAPP FLUTUANTE (whatsapp.png) */
         .floating-whatsapp {
             position: fixed;
             bottom: 30px;
@@ -545,8 +572,8 @@
         }
 
         .floating-whatsapp img {
-            width: 30px;        /* ← AJUSTE AQUI O TAMANHO DO ÍCONE WHATSAPP FLUTUANTE */
-            height: 30px;       /* ← AJUSTE AQUI O TAMANHO DO ÍCONE WHATSAPP FLUTUANTE */
+            width: 30px;
+            height: 30px;
             filter: brightness(1.2);
         }
 
@@ -569,60 +596,58 @@
             font-weight: 600;
         }
 
-        /* LOGO TSA (logo-tsa.png) */
-        .tsa-logo {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 80px;        /* ← AJUSTE AQUI O TAMANHO DO LOGO TSA */
-            height: auto;       /* ← height: auto mantém a proporção */
-            opacity: 0.9;
-            transition: all 0.3s ease;
-        }
-
-        .tsa-logo:hover {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
         @media (max-width: 768px) {
-            .tsa-logo {
-                width: 80px;    /* ← TAMANHO DO LOGO TSA NO MOBILE */
-                top: 18px;
-                right: 18px;
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-button {
+                width: 250px;
+                justify-content: center;
             }
         }
         
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
+    <!-- NOVA HERO SECTION PROFISSIONAL -->
     <section class="hero" id="hero">
+        <img src="logo-tavares.png" alt="TSA" class="tsa-logo">
         
-        <img src="logo-tsa.png" alt="TSA" class="tsa-logo">
-
-        <div class="particles">
-         <div class="particle" style="left: 7%; animation-delay: 0s;"></div>
-         <div class="particle" style="left: 18%; animation-delay: 1.5s;"></div>
-         <div class="particle" style="left: 26%; animation-delay: 4s;"></div>
-         <div class="particle" style="left: 42%; animation-delay: 2.2s;"></div>
-         <div class="particle" style="left: 55%; animation-delay: 0.8s;"></div>
-         <div class="particle" style="left: 63%; animation-delay: 3.7s;"></div>
-         <div class="particle" style="left: 72%; animation-delay: 5s;"></div>
-         <div class="particle" style="left: 84%; animation-delay: 1.3s;"></div>
-         <div class="particle" style="left: 92%; animation-delay: 2.8s;"></div>
-         <div class="particle" style="left: 96%; animation-delay: 4.5s;"></div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
         
-        <div class="logo-container">
-            <img src="logo-tavares.png" alt="Tavares Sistemas e Automação" class="logo-image">
+        <div class="hero-content">
+            <h1 class="hero-title">Transformamos Dados em Resultados</h1>
+            <p class="hero-subtitle">
+                Soluções inteligentes com <span class="highlight">Automação e IoT</span> 
+                para impulsionar o crescimento do seu negócio
+            </p>
+            <button class="cta-button" onclick="scrollToContent()">
+                Conheça nossas soluções
+            </button>
         </div>
         
-        <button class="cta-button" onclick="scrollToContent()">
-            CONHEÇA NOSSAS SOLUÇÕES
-        </button>
-        
-        <div class="scroll-indicator"></div>
+        <div class="scroll-indicator" onclick="scrollToContent()">
+            <div class="scroll-arrow"></div>
+            <div class="scroll-text">Descubra Mais</div>
+        </div>
     </section>
 
     <!-- Main Services -->
@@ -833,28 +858,4 @@
 
         // Observe all animated elements
         document.querySelectorAll('.service-card, .project-card, .section-title, .section-subtitle').forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
-        });
-
-        // Simplified scroll effects
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Add fade effect when scrolling
-            if (scrolled > 100) {
-                document.body.classList.add('show-top-fade');
-            } else {
-                document.body.classList.remove('show-top-fade');
-            }
-        });
-
-        // Add click tracking
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                console.log('Link clicked:', this.href);
-            });
-        });
-    </script>
-</body>
-</html>
+            el.style.animationPlayState = 'pa
