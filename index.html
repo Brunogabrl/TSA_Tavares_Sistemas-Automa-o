@@ -23,6 +23,8 @@
         /* NOVA HERO SECTION - DESIGN PROFISSIONAL */
         .hero {
             height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -214,7 +216,7 @@
 
         @media (max-width: 768px) {
             .scroll-indicator {
-                bottom: 80px; /* Mais espaço do fundo no mobile */
+                bottom: 80px;
             }
         }
 
@@ -286,14 +288,13 @@
                 font-size: 1rem;
             }
 
-            /* Ajusta altura no mobile para garantir que a seta fique visível */
             .hero {
                 height: 100vh;
-                min-height: 600px; /* Altura mínima para telas muito pequenas */
+                min-height: 600px;
             }
 
             .hero-title {
-                font-size: 2rem; /* Fonte um pouco menor no mobile */
+                font-size: 2.5rem;
                 margin-bottom: 15px;
             }
 
@@ -334,29 +335,13 @@
             opacity: 1;
         }
 
-        /* === RESTO DO CSS MANTIDO IGUAL === */
-
         /* Main Content Section */
         .content {
             min-height: 100vh;
             padding: 100px 20px;
             background: linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 50%, #FFFFFF 100%);
             position: relative;
-            margin-top: 0; /* Remove qualquer margem */
-        }
-
-        /* Garante que a seção hero ocupe exatamente 100vh */
-        .hero {
-            height: 100vh;
-            min-height: 100vh;
-            max-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            overflow: hidden;
+            margin-top: 0;
         }
 
         .container {
@@ -874,47 +859,14 @@
 
     <script>
         function scrollToContent() {
-            document.getElementById('content').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
+            const contentSection = document.getElementById('content');
+            const heroHeight = document.getElementById('hero').offsetHeight;
+            
+            // Rola para que a seção de conteúdo fique totalmente visível
+            window.scrollTo({
+                top: heroHeight,
+                behavior: 'smooth'
             });
         }
 
-        // Add animation when elements come into view
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.service-card, .project-card, .section-title, .section-subtitle').forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
-        });
-
-        // Simplified scroll effects
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Add fade effect when scrolling
-            if (scrolled > 100) {
-                document.body.classList.add('show-top-fade');
-            } else {
-                document.body.classList.remove('show-top-fade');
-            }
-        });
-
-        // Add click tracking
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                console.log('Link clicked:', this.href);
-            });
-        });
+        // Ad
